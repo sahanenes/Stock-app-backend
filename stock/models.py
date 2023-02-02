@@ -11,12 +11,20 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
 class Brand(models.Model):
     name = models.CharField(max_length=25,unique=True)
     image = models.TextField()
     
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Brand"
+        verbose_name_plural = "Brands"
 
 
 class Product(models.Model):
@@ -31,6 +39,10 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Product"
+        verbose_name_plural = "Products"
+
 class Firm(models.Model):
     name = models.CharField(max_length=25,unique=True)
     phone = models.CharField(max_length=25)
@@ -40,6 +52,9 @@ class Firm(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Firm"
+        verbose_name_plural = "Firms"
 
 class Purchases(models.Model):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
@@ -54,6 +69,10 @@ class Purchases(models.Model):
     def __str__(self):
         return f"{self.product}-{self.quantity}"
 
+    class Meta:
+        verbose_name = "Purchase"
+        verbose_name_plural = "Purchases"
+
 class Sales(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, related_name="b_sales")
@@ -65,3 +84,7 @@ class Sales(models.Model):
     
     def __str__(self):
         return f"{self.product} - {self.quantity}"
+
+    class Meta:
+        verbose_name = "Sale"
+        verbose_name_plural = "Sales"
